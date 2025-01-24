@@ -8,6 +8,7 @@ This repo contains a demo for Azure Functions which can be deployed to Azure wit
         - [GitHub CLI](https://cli.github.com)
         - [Bicep CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install)
 - [.NET Core 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
 
 ## 🚀 Usage
 - Clone this repo
