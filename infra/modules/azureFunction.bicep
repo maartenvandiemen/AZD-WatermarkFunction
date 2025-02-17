@@ -5,7 +5,7 @@ param storageAccountName string
 
 var uniqueName = uniqueString(resourceGroup().id, subscription().id)
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' existing = {
   name: storageAccountName
 }
 
