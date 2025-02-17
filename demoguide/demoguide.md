@@ -46,30 +46,13 @@ This scenario deploys the sample **WatermarkFunction** application architecture,
 * %youralias%tbappinsights - Application Insights, primarily showing Live Metrics of the Functions API calls
 
 
-<img src="../DemoGuides/TOLLBOOTH/ResourceGroup_Overview.png" alt="WatermarkFunctions Resource Group" style="width:70%;">
+<img src="img/ResourceGroup_Overview.png" alt="WatermarkFunctions Resource Group" style="width:70%;">
 <br></br>
 
 
 ### 2. What can I demo from this scenario after deployment
 
 #### Azure Storage Account
-
-<div style="background: lightblue; 
-            font-size: 14px; 
-            color: black;
-            padding: 5px; 
-            border: 1px solid lightgray; 
-            margin: 5px;">
-
-**Tip:** Since the deployment is done using your Demo Deploy Service Principal, you need to give yourself "Blob Data Contributor" permissions on the deployed Storage Account, in order to have access to the blob containers to upload images to the /input container, as well as seeing the resulting images in the /output container. 
-
-Showing this process to the learners could be an interesting demo on itself...
-</div>
-
-1. Provide the required "Azure Blob Data Contributor" permissions to your Azure admin account. Navigate to the Azure Storage Account that got deployed, and select **Role Based Access (IAM)**. Click **Add** / **Add Role Assignment**, and search for **Storage Blob Data Contributor** in the list of Roles. In the next step, click **Select Members** and search for your Azure Admin account in the list of identity objects. Confirm by clicking the **Review and Assign** button.
-
-<img src="img/Blob_Contributor_RBAC.png" alt="Set Blob Data Contributor Permissions" style="width:70%;">
-<br></br>
 
 1. Navigate to the **Input** Container; this container is initially empty. 
 

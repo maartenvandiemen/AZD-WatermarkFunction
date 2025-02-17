@@ -8,7 +8,7 @@ var storageaccntContainers = [
   'output'
 ]
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   name: 'storage${uniqueName}'
   location: resourceGroup().location
   tags: tags
@@ -36,12 +36,21 @@ resource storageAccountBlobService 'Microsoft.Storage/storageAccounts/blobServic
   name: 'default'
 }
 
-resource storageAccountContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = [for container in storageaccntContainers: {
+resource storageAccountContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = [for container in storageaccntContainers: {
   name: container
   parent: storageAccountBlobService
   properties: {
     publicAccess: 'None'
   }
 }]
+
+resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  scope: storageAccount
+  name: guid(resourceGroup().id, deployer().objectId, 'Storage Blob Data Contributor')
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+    principalId: deployer().objectId
+  }
+}
 
 output storageAccountName string = storageAccount.name
