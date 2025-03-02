@@ -33,7 +33,7 @@
 
 **Demo scenario story:** Using this demo scenario, you showcase a solution for processing images uploaded to an /input blob container, which in turn triggers an Azure Function for each uploaded file. The Azure Function adds a red watermark text to the image, and stores the new image file in an /output blob container using the same file name as the original.  Each aspect of the architecture provides live dashboard views, allows for showing the Azure Functions base monitoring capabilities, as well as more detailed information can be viewed real-time from Azure Application Insights.
 
-<img src="img/watermarkfunction_diagram.png" alt="Watermark Function Architecture Diagram" style="width:70%;">
+<img src="https://raw.githubusercontent.com/maartenvandiemen/AZD-WatermarkFunction/refs/heads/main/demoguide/img/watermarkfunction_diagram.png" alt="Watermark Function Architecture Diagram" style="width:70%;">
 <br></br>
 
 ***
