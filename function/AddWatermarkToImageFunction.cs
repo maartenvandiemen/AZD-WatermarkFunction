@@ -33,7 +33,7 @@ namespace FunctionApp
                     using (var canvas = surface.Canvas)
                     {
                         // Draw the original image onto the canvas
-                        canvas.DrawBitmap(image, 0, 0);
+                        canvas.DrawBitmap(image, 0, 0, SKSamplingOptions.Default);
 
                         // Define the watermark text and paint
                         string watermarkText = "AZURE FUNCTIONS ADDED A WATERMARK TEXT HERE";
