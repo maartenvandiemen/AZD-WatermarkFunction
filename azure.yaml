@@ -5,18 +5,6 @@ metadata:
   template: tdd-azd-watermarkfunction@0.0.1-beta
 infra:
    provider: bicep
-hooks:
-  prepackage:
-    windows:
-      shell: pwsh
-      continueOnError: false
-      interactive: true
-      run: azd-hooks/prepackage.ps1
-    posix:
-      shell: pwsh
-      continueOnError: false
-      interactive: true
-      run: azd-hooks/prepackage.ps1
 services:
   watermarkfunction:
     project: ./function

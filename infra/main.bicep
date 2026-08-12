@@ -30,6 +30,7 @@ module storageAccount './modules/storageAccount.bicep' = {
   scope: rg
   params: {
     tags: tags
+    location: location
   }
 }
 
@@ -38,6 +39,9 @@ module azureFunction './modules/azureFunction.bicep' = {
   scope: rg
   params: {
     tags: tags
+    location: location
     storageAccountName: storageAccount.outputs.storageAccountName
+    primaryBlobEndpoint: storageAccount.outputs.primaryBlobEndpoint
+    deploymentContainerName: storageAccount.outputs.deploymentContainerName
   }
 }
