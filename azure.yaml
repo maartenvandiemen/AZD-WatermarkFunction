@@ -6,17 +6,17 @@ metadata:
 infra:
    provider: bicep
 hooks:
-  prepackage:
+  postdeploy:
     windows:
       shell: pwsh
       continueOnError: false
       interactive: true
-      run: azd-hooks/prepackage.ps1
+      run: azd-hooks/postdeploy.ps1
     posix:
       shell: pwsh
       continueOnError: false
       interactive: true
-      run: azd-hooks/prepackage.ps1
+      run: azd-hooks/postdeploy.ps1
 services:
   watermarkfunction:
     project: ./function

@@ -2,5 +2,6 @@
 [comment]: <> (typical use case could be a specific Dev Language SDK like .NET 6)
 [comment]: <> (don't add any other information, as this is rendered as part of a prereqs element on the webpage)
 
-- [.NET Core 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [.NET Core 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 - [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli), signed in via `az login`
