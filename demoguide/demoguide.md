@@ -40,10 +40,11 @@
 ### 1. What Resources are getting deployed
 This scenario deploys the sample **WatermarkFunction** application architecture, which relies on the following Azure resources all working together: 
 
-* MTTDemoDeployRGc%youralias%WATERMARK - Azure Resource Group.
-* %youralias%wmarkstoraccnt - Azure Storage Account with blob containers /input and /output, used for uploading and storing images
-* %youralias%wmarkfunctions - Azure Functions with Blob Trigger
-* %youralias%tbappinsights - Application Insights, primarily showing Live Metrics of the Functions API calls
+* rg-%azd name% - Azure Resource Group.
+* storage%alias% - Azure Storage Account with blob containers /input and /output, used for uploading and storing images
+* function-%alias% - Azure Functions with Blob Trigger
+* appInsights-%alias% - Application Insights, primarily showing Live Metrics of the Functions API calls
+* evgt-%alias% - Azure Event Grid System Topic. Flex Consumption function apps don't support the classic Storage polling-based Blob trigger, so blob uploads in /input are routed to the Function through an Event Grid subscription on this topic instead.
 
 
 <img src="https://raw.githubusercontent.com/maartenvandiemen/AZD-WatermarkFunction/refs/heads/main/demoguide/img/ResourceGroup_Overview.png" alt="WatermarkFunctions Resource Group" style="width:70%;">
@@ -86,6 +87,23 @@ This scenario deploys the sample **WatermarkFunction** application architecture,
             margin: 5px;">
 
 **Tip:** If you have more image files available, feel free to upload multiple files at once. Each uploaded file will generate a new output image file. 
+</div>
+
+#### Azure Event Grid
+
+1. Navigate to **Event Grid System Topics**, and open the **evgt-%alias%** resource. This is what makes the Blob trigger possible on a **Flex Consumption** plan: the Function App can't use the classic Storage polling-based Blob trigger, so instead it relies on this system topic to raise a `Microsoft.Storage.BlobCreated` event every time a file lands in the /input container.
+
+1. Select **Event Subscriptions** to see the **input-container-blob-created** subscription. Open it and point out the **webhook endpoint** under **Endpoint details** — this is the Function's own `/runtime/webhooks/blobs` URL, secured with a system key, which is how Event Grid calls back into **AddWatermarkToImage** for every upload.
+
+<div style="background: lightblue; 
+            font-size: 14px; 
+            color: black;
+            padding: 5px; 
+            border: 1px solid lightgray; 
+            margin: 5px;">
+
+**Tip:** This subscription can't be created until the Function has been deployed at least once, since it depends on a system key that the Function's blob extension only generates after deployment. That's why it's wired up by an `azd` **postdeploy** hook (`azd-hooks/postdeploy.ps1`) right after `azd deploy` finishes, instead of being provisioned in Bicep along with the rest of the resources.
+</div>
 
 #### Azure Functions
 
@@ -157,7 +175,7 @@ Note: If you see the "Demo" page, it means you don't have live metrics (anymore)
 <img src="https://raw.githubusercontent.com/maartenvandiemen/AZD-WatermarkFunction/refs/heads/main/demoguide/img/appinsights_application_map_events.png" alt="App Insights - Events" style="width:70%;">
 <br></br>
 
-1. Select the **value** metric in the middle between Functions and Storage Account, to open the more detailed view. This opens a blade to the right-hand side of the Azure Portal, exposing many more details about the processing of events. It shows details about the CosmosDB instance, as well as performance details of each CosmosDB action (GET, Create Document, Get Collection, etc...)
+1. Select the **value** metric in the middle between Functions and Storage Account, to open the more detailed view. This opens a blade to the right-hand side of the Azure Portal, exposing many more details about the processing of events. It shows performance details of each Blob Storage action (GET, PUT, List, etc...)
 
 1. Click on **Investigate Performance**
 

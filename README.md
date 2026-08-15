@@ -10,6 +10,8 @@ This repo contains a demo for Azure Functions which can be deployed to Azure usi
         - [GitHub CLI](https://cli.github.com)
         - [Bicep CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install)
 - [.NET Core 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+- [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli), signed in via `az login` (used by a postdeploy hook to wire up the Event Grid blob trigger)
 - You need Owner or Contributor access permissions to an Azure Subscription to  deploy the scenario.
 
 ## 🚀 Deploying the scenario in 4 steps:

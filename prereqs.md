@@ -3,3 +3,5 @@
 [comment]: <> (don't add any other information, as this is rendered as part of a prereqs element on the webpage)
 
 - [.NET Core 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+- [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli), signed in via `az login`

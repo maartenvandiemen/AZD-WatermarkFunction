@@ -5,6 +5,18 @@ metadata:
   template: tdd-azd-watermarkfunction@0.0.1-beta
 infra:
    provider: bicep
+hooks:
+  postdeploy:
+    windows:
+      shell: pwsh
+      continueOnError: false
+      interactive: true
+      run: azd-hooks/postdeploy.ps1
+    posix:
+      shell: pwsh
+      continueOnError: false
+      interactive: true
+      run: azd-hooks/postdeploy.ps1
 services:
   watermarkfunction:
     project: ./function

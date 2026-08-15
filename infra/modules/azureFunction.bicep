@@ -56,6 +56,10 @@ module functionApp 'br/public:avm/res/web/site:0.24.0' = {
     managedIdentities: {
       systemAssigned: true
     }
+    siteConfig: {
+      minTlsVersion: '1.2'
+      ftpsState: 'FtpsOnly'
+    }
     functionAppConfig: {
       deployment: {
         storage: {
@@ -68,7 +72,7 @@ module functionApp 'br/public:avm/res/web/site:0.24.0' = {
       }
       scaleAndConcurrency: {
         maximumInstanceCount: 1
-        instanceMemoryMB: 1048
+        instanceMemoryMB: 2048
       }
       runtime: {
         name: 'dotnet-isolated'
@@ -111,3 +115,5 @@ resource storageQueueDataContributorForFunction 'Microsoft.Authorization/roleAss
     principalType: 'ServicePrincipal'
   }
 }
+
+output functionAppName string = functionApp.outputs.name

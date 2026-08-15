@@ -45,3 +45,9 @@ module azureFunction './modules/azureFunction.bicep' = {
     deploymentContainerName: storageAccount.outputs.deploymentContainerName
   }
 }
+
+// Consumed by the postdeploy hook, which creates the Event Grid subscription that routes
+// "input/" blob uploads to the function once its blob extension key exists.
+output AZURE_RESOURCE_GROUP string = rg.name
+output AZURE_FUNCTION_APP_NAME string = azureFunction.outputs.functionAppName
+output AZURE_STORAGE_EVENT_GRID_TOPIC_NAME string = storageAccount.outputs.eventGridSystemTopicName
